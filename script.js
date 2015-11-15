@@ -230,25 +230,22 @@
 
     function renderIframe(editedTables) {
         var iframe = newIframe(),
-            editedTablesClone = editedTables.cloneNode(true),
-            iframeDocument = iframe.contentWindow.document;
+            editedTablesClone = editedTables.cloneNode(true);
 
         iframe.addEventListener('load', function() {
             styleIframe(iframe);
-            iframeDocument.body.appendChild(editedTablesClone);
+            iframe.contentWindow.document.body.appendChild(editedTablesClone);
         }, false);
         styleIframe(iframe);
-        iframeDocument.body.appendChild(editedTables);
+        iframe.contentWindow.document.body.appendChild(editedTables);
     }
 
     function styleIframe(iframe) {
-        var styles = document.querySelector('style').cloneNode(true),
-            iframeDocument = iframe.contentWindow.document;
+        var styles = document.querySelector('style').cloneNode(true);
 
-        iframe.style.display = 'block';
-        iframe.style.border = '1px solid #eaeaea';
-        iframeDocument.body.style.margin = 0;
-        iframeDocument.head.appendChild(styles);
+        iframe.setAttribute('style', 'display: block; border: 2px solid pink;');
+        iframe.contentWindow.document.body.style.margin = 0;
+        iframe.contentWindow.document.head.appendChild(styles);
     }
 
 
